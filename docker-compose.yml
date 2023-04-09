@@ -1,0 +1,52 @@
+version: '3.3'
+services:
+  react-native-app:
+    build:
+      context: ./react-native-app
+      dockerfile: Dockerfile
+    ports:
+      - "19006:19006"
+    volumes:
+      - ./react-native-app:/opt/react_native_app
+    networks:
+      - local-network
+
+  ionic-angular-app:
+    build:
+      context: ./ionic-angular-app
+      dockerfile: Dockerfile
+    ports:
+      - "7777:7777"
+    volumes:
+      - ./ionic-angular-app:/usr/src/app
+    command: npm start
+    networks:
+      - local-network
+
+  cordova-vue-app:
+    build:
+      context: ./cordova-vue-app
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./cordova-vue-app:/usr/src/app
+    command: npm start
+    networks:
+      - local-network
+
+  node-server:
+    build:
+      context: ./node-server
+      dockerfile: Dockerfile
+    ports:
+      - "3333:3333"
+    volumes:
+      - ./node-server:/usr/src/app
+    command: npm start
+    networks:
+      - local-network
+
+networks:
+  local-network:
+    driver: bridge

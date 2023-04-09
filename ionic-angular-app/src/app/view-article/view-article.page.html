@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        [text]="getBackButtonText()"
+        defaultHref="/"
+      ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="article">
+  <ion-item>
+    <ion-label class="ion-text-wrap">
+      <h1>
+        {{ article.title }}
+        <span class="date">
+          <ion-note>{{ article.createdAt }}</ion-note>
+        </span>
+      </h1>
+    </ion-label>
+  </ion-item>
+
+  <div class="article-content ion-padding">
+    <img
+      class="article-image"
+      [src]="article.articleImage"
+      [alt]="article.title"
+    />
+    <p>{{ article.text }}</p>
+  </div>
+</ion-content>
